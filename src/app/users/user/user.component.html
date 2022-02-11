@@ -1,0 +1,87 @@
+<!-- Template driven form -->
+<form name="userform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+
+    <!-- User Id (Hidden)-->
+    <input type = "hidden" name="CId" [(ngModel)]="userService.formData.CId">
+
+    <!-- User Name -->
+    <div class="form-group">
+        <label>  Full Name : </label>
+        <input type="text" name="Name"
+        #Name="ngModel"
+        [(ngModel)]="userService.formData.Name"
+        class="form-control"
+        placeholder="Enter Full Name"
+        required minlength="3"
+        [ngClass]="{'is-invalid':Name.touched && Name.invalid}"/>
+        <!-- Validation -->
+        <div class="validation-error" *ngIf="Name.touched && Name.invalid">
+            <div *ngIf="Name.errors.required">
+                First Name is required
+            </div>
+        </div>
+    </div>
+
+    <!-- Occupation -->
+    <div class="form-group">
+        <label>  Occupation : </label>
+        <input type="text" name="Occupation"
+        #Occupation="ngModel"
+        [(ngModel)]="userService.formData.Occupation"
+        class="form-control"
+        placeholder="Enter Occupation"
+        required minlength="3"
+        [ngClass]="{'is-invalid':Occupation.touched && Occupation.invalid}"/>
+        <!-- Validation -->
+        <div class="validation-error" *ngIf="Occupation.touched && Occupation.invalid">
+            <div *ngIf="Occupation.errors.required">
+                Occupation is required
+            </div>
+        </div>
+    </div>
+
+    <!-- Age-->
+    <div class="form-group">
+        <label>  Age : </label>
+        <input type="number" name="Age"
+        #Age="ngModel"
+        [(ngModel)]="userService.formData.Age"
+        class="form-control"
+        placeholder="Enter Age"
+        required minlength="3"
+        [ngClass]="{'is-invalid':Age.touched && Age.invalid}"/>
+        <!-- Validation -->
+        <div class="validation-error" *ngIf="Age.touched && Age.invalid">
+            <div *ngIf="Age.errors.required">
+                Age is required
+            </div>
+        </div>
+    </div>
+
+    <!-- Password-->
+    <div class="form-group">
+        <label>  Password : </label>
+        <input type="password" name="Pass"
+        #Pass="ngModel"
+        [(ngModel)]="userService.formData.Pass"
+        class="form-control"
+        placeholder="Enter Password"
+        required minlength="3"
+        [ngClass]="{'is-invalid':Pass.touched && Pass.invalid}"/>
+        <!-- Validation -->
+        <div class="validation-error" *ngIf="Pass.touched && Pass.invalid">
+            <div *ngIf="Pass.errors.required">
+                Password is required
+            </div>
+        </div>
+    </div>
+
+    <!-- submit -->
+    <br>
+    <div class="form-group">
+        <button type="form-group"
+        class="btn btn-lg btn-primary form-control"
+        [disabled]="!(form.valid && form.dirty)"
+        >Submit</button>
+    </div>
+</form>

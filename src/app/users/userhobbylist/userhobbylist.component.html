@@ -1,0 +1,47 @@
+
+<!-- This is for Admin -->
+
+<div class="=container">
+    <div class="header">
+        <div class="form-control">
+
+            <!--Search functionality-->
+            <input class="form-control" type="text" placeholder="Search here.." [(ngModel)]="filter">
+            {{filter}}
+            <!--Property Binding-->
+            <!-- <a [routerLink]="" class="btn btn-outline-secondary" style="float: right;margin-top: 15px;margin-bottom: 10px;">Add Employee</a> -->
+            
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Occupation</th>
+                <th>Age</th>
+                <th>Hobbies</th>
+                <th>Movies</th>
+                <th>Action</th> <!--Edit/Delete-->
+            </tr>            
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userService.users | filter:filter | paginate: {itemsPerPage:5,currentPage:page}">
+                <td>{{user.CId}}</td>
+                <td>{{user.Name}}</td>
+                <td>{{user.Occupation}}</td>
+                <td>{{user.Age}}</td>
+                <td>{{user.Hobby}}</td>
+                <td>{{user.Movie}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-info" (click)="updateUser(user.CId)">Edit</button>&nbsp;
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user.CId)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+        <!--Pagination-->
+    </div>
+</div>
